@@ -1,37 +1,39 @@
 import random
+import string
 import tkinter as tk
 from tkinter import *
 
 def generatePass():
-    print("Clicked")
-    symbols = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K",
-               "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z",
-               "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", ".","*","/","?"]
+    lower = string.ascii_lowercase
+    upper = string.ascii_uppercase
+    numbers = string.digits
+    symbol = string.punctuation
     passLen = length.get()
-    if passLen == 0:
+    if passLen == "":
         print("No value detected")
     else:
         passLen = int(length.get())
-    for i in range(passLen):
-       char = random.randint(0,len(symbols))
-       print(symbols[char],end= '')
+        passwordGenerated = lower+upper+numbers+symbol
+        temp = random.sample(passwordGenerated,passLen)
+        final = "".join(temp)
+        print(final)
        #TODO Change label or entry text
 
 
 window = tk.Tk()
 window.title("Password Generator")
-window.geometry('400x300')
+window.geometry('200x200')
 window.resizable(False, False)
 length = tk.Entry(window,width = 2)
 length.pack()
 button = tk.Button(window, command=lambda: generatePass(), text="Generate")
 button.pack(side=BOTTOM)
 #TODO Make a text field where you will show your password
-field = tk.Label(window,justify = BOTTOM)
+field = tk.Label(window)
 field.pack()
 #TODO Add labels
-mainLabel = Label(window,anchor = CENTER,text = "Enter the number of charachters")
+mainLabel = Label(window,anchor = N,text = "Enter the number of charachters")
+mainLabel.place(x = 20,y=200)
 mainLabel.pack()
-#TODO Reorganize elements on the window
 
 window.mainloop()
