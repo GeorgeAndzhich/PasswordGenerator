@@ -14,7 +14,8 @@ def generatePass():
         passLen = int(length.get())
     for i in range(passLen):
        char = random.randint(0,len(symbols))
-       print(symbols[char])
+       print(symbols[char],end= '')
+       #TODO Change label or entry text
 
 
 window = tk.Tk()
@@ -26,7 +27,7 @@ length.pack()
 button = tk.Button(window, command=lambda: generatePass(), text="Generate")
 button.pack(side=BOTTOM)
 #TODO Make a text field where you will show your password
-field = tk.Entry(window,width = 24)
+field = tk.Label(window,justify = BOTTOM)
 field.pack()
 #TODO Add labels
 mainLabel = Label(window,anchor = CENTER,text = "Enter the number of charachters")
