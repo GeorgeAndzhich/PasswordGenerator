@@ -16,14 +16,15 @@ def generatePass():
         passwordGenerated = lower+upper+numbers+symbol
         temp = random.sample(passwordGenerated,passLen)
         final = "".join(temp)
-        print(final)
+
+        label1['text'] = final
        #TODO Change label or entry text
 
 
 window = tk.Tk()
 window.title("Password Generator")
-window.geometry('200x200')
-window.resizable(False, False)
+window.geometry('400x200')
+window.resizable(True, False)
 length = tk.Entry(window,width = 2)
 length.pack()
 button = tk.Button(window, command=lambda: generatePass(), text="Generate")
@@ -36,4 +37,6 @@ mainLabel = Label(window,anchor = N,text = "Enter the number of charachters")
 mainLabel.place(x = 20,y=200)
 mainLabel.pack()
 
+label1 = Label(window,anchor = N)
+label1.pack()
 window.mainloop()
