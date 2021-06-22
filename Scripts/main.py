@@ -10,15 +10,17 @@ def generatePass():
     symbol = string.punctuation
     passLen = length.get()
     if passLen == "":
-        print("No value detected")
+        label1['text'] = "No input detected"
     else:
-        passLen = int(length.get())
-        passwordGenerated = lower+upper+numbers+symbol
-        temp = random.sample(passwordGenerated,passLen)
-        final = "".join(temp)
-
-        label1['text'] = final
-       #TODO Change label or entry text
+        try:
+            passLen = int(length.get())
+        except ValueError:
+            label1['text'] = "Please enter a number"
+        else:
+            passwordGenerated = lower+upper+numbers+symbol
+            temp = random.sample(passwordGenerated,passLen)
+            final = "".join(temp)
+            label1['text'] = final
 
 
 window = tk.Tk()
@@ -29,10 +31,8 @@ length = tk.Entry(window,width = 2)
 length.pack()
 button = tk.Button(window, command=lambda: generatePass(), text="Generate")
 button.pack(side=BOTTOM)
-#TODO Make a text field where you will show your password
 field = tk.Label(window)
 field.pack()
-#TODO Add labels
 mainLabel = Label(window,anchor = N,text = "Enter the number of charachters")
 mainLabel.place(x = 20,y=200)
 mainLabel.pack()
